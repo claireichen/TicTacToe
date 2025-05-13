@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-BROKER="35.203.187.41"
+BROKER="34.83.53.31"
 PORT=1883
 BOARD_TOPIC="game/board"
 PLAYER=${1:-X}      # pass X or O, default X
