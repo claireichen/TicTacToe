@@ -28,8 +28,8 @@ int  xWins = 0, oWins = 0, draws = 0;
 char  waitingPlayer = ' ';  // Track who is waiting for MQTT echo
 bool  moveReceived   = false;  // Whether a valid move has been received
 int   recRow = -1, recCol = -1;  // Coordinates of the received move
-bool    haveMode = false;
-int     gameMode = 0;
+bool  haveMode = false;
+int   gameMode = 0;
 
 // —— forward declarations —— 
 void    setup_LCD();
@@ -218,6 +218,9 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
     int brace = msg.lastIndexOf('}');
     if (colon < 0 || brace < 0) return;
     int mode = msg.substring(colon + 1, brace).toInt();
+
+    haveMode = true;
+    gameMode = mode;
 
     if (mode == 1) {
       Serial.println("-> Mode 1: Human vs Bot (single interactive game)");
